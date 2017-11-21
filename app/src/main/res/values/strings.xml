@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyServiceBroadcast</string>
+    <string name="broadcast_service">通过Broadcast启动Service</string>
+</resources>
