@@ -8,13 +8,9 @@
 
     <Button
         android:id="@+id/send"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="@string/broadcast_service"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:text="@string/broadcast_service" />
 
     <TextView
         android:id="@+id/tv"
@@ -22,6 +18,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="测试"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="测试1"
         android:textColor="@color/colorAccent"
         android:textSize="16sp" />
 

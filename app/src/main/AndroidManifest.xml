@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="example.com.myservicebroadcast.service.MyService" />
+        <service android:name="example.com.myservicebroadcast.service.MyStartService" />
+        <service android:name="example.com.myservicebroadcast.service.MyBindService" />
     </application>
 
 </manifest>
