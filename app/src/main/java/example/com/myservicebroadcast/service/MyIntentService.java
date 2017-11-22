@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /*
+  参考：http://blog.csdn.net/javazejian/article/details/52426425
  1、它本质是一种特殊的Service,继承自Service并且本身就是一个抽象类
  2、它可以用于在后台执行耗时的异步任务，当任务完成后会自动停止
  3、它拥有较高的优先级，不易被系统杀死（继承自Service的缘故），因此比较适合执行一些高优先级的异步任务
