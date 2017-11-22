@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -14,9 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import example.com.myservicebroadcast.service.MyBindService;
+import example.com.myservicebroadcast.service.MyIntentService;
 import example.com.myservicebroadcast.util.Constant;
 import example.com.myservicebroadcast.broadcast.MyBroadcastReceiver;
 import example.com.myservicebroadcast.service.MyStartService;
@@ -41,6 +44,27 @@ startService会在Android内存存在压力的时候才调用stopService，又�
 */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * 图片地址集合
+     */
+    private String url[] = {
+            "http://img.blog.csdn.net/20160903083245762",
+            "http://img.blog.csdn.net/20160903083252184",
+            "http://img.blog.csdn.net/20160903083257871",
+            "http://img.blog.csdn.net/20160903083257871",
+            "http://img.blog.csdn.net/20160903083311972",
+            "http://img.blog.csdn.net/20160903083319668",
+            "http://img.blog.csdn.net/20160903083326871"
+    };
+    private static ImageView imageView;
+    private static final Handler mUIHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            imageView.setImageBitmap((Bitmap) msg.obj);
+        }
+    };
+
+
     private MyBroadcastReceiver myBroadcastReceiver;
     private TextView mTv;
     private TextView mTv1;
@@ -58,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imageView = (ImageView) findViewById(R.id.image);
+
+        Intent intent = new Intent(this,MyIntentService.class);
+        for (int i=0;i<7;i++) {//循环启动任务
+            intent.putExtra(MyIntentService.DOWNLOAD_URL,url[i]);
+            intent.putExtra(MyIntentService.INDEX_FLAG,i);
+            startService(intent);
+        }
+        MyIntentService.setUpdateUI(new MyIntentService.UpdateUI() {
+            @Override
+            public void updateUI(Message message) {
+                mUIHandler.sendMessageDelayed(message,message.what * 1000);
+            }
+        });
+
+        /*--------------------------------------------------------*/
 
         mTv = ((TextView) findViewById(R.id.tv));
         mTv1 = ((TextView) findViewById(R.id.tv1));

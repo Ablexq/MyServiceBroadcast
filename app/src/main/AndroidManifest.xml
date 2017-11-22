@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +23,7 @@
 
         <service android:name="example.com.myservicebroadcast.service.MyStartService" />
         <service android:name="example.com.myservicebroadcast.service.MyBindService" />
+        <service android:name="example.com.myservicebroadcast.service.MyIntentService" />
     </application>
 
 </manifest>
